@@ -1,429 +1,908 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Aabesh Alam · data & growth analytics · complete portfolio</title>
-  <!-- fonts + icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    *{margin:0; padding:0; box-sizing:border-box;}
-    :root{
-      --navy:#0b1e33; --navy-light:#1a334d; --teal:#1ab2b0; --purple:#7a6ef0;
-      --white:#ffffff; --off-white:#f8fafc; --gray-border:#e9edf4; --text-dark:#0b1e33;
-      --text-medium:#2e405b; --shadow-sm:0 5px 20px -5px rgba(11,30,51,0.08);
-      --shadow-md:0 15px 30px -12px rgba(11,30,51,0.15);
-    }
-    body{
-      font-family:'Inter', sans-serif; background:var(--off-white); color:var(--text-dark);
-      line-height:1.5; scroll-behavior:smooth;
-    }
-    /* ===== left vertical nav (animated) ===== */
-    .app-wrapper{display:flex; min-height:100vh;}
-    .left-nav{
-      width:260px; background:linear-gradient(160deg,#fff 0%,#f2f7ff 100%); border-right:1px solid var(--gray-border);
-      box-shadow:4px 0 20px rgba(0,0,0,0.02); padding:2.5rem 1.2rem 2rem 1.8rem; position:sticky; top:0; height:100vh;
-      overflow-y:auto; display:flex; flex-direction:column; z-index:10; transition:box-shadow 0.3s;
-    }
-    .left-nav:hover{box-shadow:6px 0 24px rgba(26,178,176,0.08);}
-    .nav-logo{
-      font-weight:700; font-size:1.8rem; letter-spacing:-0.02em; background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 80%);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:2.8rem; line-height:1.2;
-      animation:glowPulse 3s infinite ease-in-out;
-    }
-    @keyframes glowPulse{0%{opacity:1;} 50%{opacity:0.85; text-shadow:0 0 6px rgba(26,178,176,0.6);} 100%{opacity:1;}}
-    .nav-menu{display:flex; flex-direction:column; gap:1.2rem; flex:1;}
-    .nav-item{
-      display:flex; align-items:center; gap:1rem; padding:0.7rem 1rem; border-radius:16px; color:var(--text-medium);
-      text-decoration:none; font-weight:500; transition:all 0.25s cubic-bezier(0.2,0,0,1); border:1px solid transparent;
-    }
-    .nav-item i{width:1.6rem; font-size:1.2rem; color:var(--teal); transition:0.25s;}
-    .nav-item:hover{background:rgba(26,178,176,0.06); border-color:rgba(26,178,176,0.3); color:var(--navy); transform:translateX(5px);}
-    .nav-item:hover i{color:var(--purple); transform:scale(1.1) rotate(2deg);}
-    .nav-footer{margin-top:auto; border-top:1px dashed var(--gray-border); padding-top:1.5rem; font-size:0.8rem; color:#8399b8;}
-    .footer-tag{display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; transition:0.2s;}
-    .footer-tag i{width:1.4rem; color:var(--teal);}
-    .footer-tag:hover i{color:var(--purple); transform:scale(1.1);}
-    /* main content */
-    .main-content{flex:1; min-width:0; background-color:var(--off-white);}
-    .container{width:100%; max-width:1280px; margin:0 auto; padding:0 1.5rem;}
-    .text-teal{color:var(--teal);} .text-purple{color:var(--purple);}
-    .btn{
-      display:inline-block; padding:0.7rem 1.6rem; border-radius:40px; font-weight:600; text-decoration:none;
-      transition:all 0.25s cubic-bezier(0.25,0.1,0,1.5); font-size:0.95rem; border:1px solid transparent;
-    }
-    .btn-primary{background:var(--navy); color:white; box-shadow:0 4px 12px rgba(11,30,51,0.15);}
-    .btn-primary:hover{background:var(--navy-light); transform:translateY(-4px) scale(1.02); box-shadow:0 12px 24px -8px #0b1e33;}
-    .btn-outline{background:transparent; border:1px solid var(--navy); color:var(--navy);}
-    .btn-outline:hover{background:var(--navy); color:white; transform:translateY(-2px);}
-    /* HERO with animated dashboard */
-    .hero{display:flex; align-items:center; flex-wrap:wrap; gap:2rem; padding:3rem 0 2rem;}
-    .hero-content{flex:1 1 350px;}
-    .hero h1{font-size:clamp(2rem,6vw,3.5rem); font-weight:700; line-height:1.2; letter-spacing:-0.02em; color:var(--navy); min-height:6rem;}
-    #typing-title{display:inline-block; background:linear-gradient(135deg,var(--teal),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border-bottom:3px solid var(--purple);}
-    .hero-sub{font-size:clamp(1rem,3vw,1.3rem); font-weight:500; margin:1rem 0 0.5rem; color:var(--text-medium);}
-    .hero-bio{font-size:1rem; color:var(--text-medium); max-width:600px; margin:1.2rem 0 2rem;}
-    .cta-group{display:flex; gap:1rem; flex-wrap:wrap;}
-    /* dashboard widget — fully animated */
-    .hero-viz{
-      flex:1 1 300px; background:linear-gradient(145deg,#fff,#f4f9ff); border-radius:32px; padding:1.8rem 1.4rem;
-      box-shadow:var(--shadow-md); border:1px solid #d6e3f0; transition:all 0.3s ease; animation:floatViz 5s infinite alternate;
-    }
-    @keyframes floatViz{0%{transform:translateY(0);} 100%{transform:translateY(-8px); box-shadow:0 30px 40px -14px rgba(26,178,176,0.35);}}
-    .hero-viz:hover{animation-play-state:paused; transform:scale(1.01) translateY(-4px);}
-    .dashboard-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;}
-    .dashboard-header span{font-weight:700; font-size:1rem; color:var(--navy); background:rgba(26,178,176,0.08); padding:0.3rem 1rem; border-radius:40px; border:1px solid rgba(26,178,176,0.3);}
-    .dashboard-header i{color:var(--purple); font-size:1.4rem; transition:0.3s;}.dashboard-header i:hover{transform:rotate(90deg) scale(1.1);}
-    .kpi-row{display:flex; justify-content:space-between; margin:1.2rem 0 0.8rem; background:rgba(11,30,51,0.02); padding:0.6rem 0.5rem; border-radius:20px;}
-    .kpi-item{text-align:center; animation:fadeSlideIn 0.6s;}
-    @keyframes fadeSlideIn{0%{opacity:0; transform:translateY(10px);}100%{opacity:1; transform:translateY(0);}}
-    .kpi-label{font-size:0.7rem; text-transform:uppercase; letter-spacing:0.5px; color:#4f658b;}
-    .kpi-value{font-weight:800; font-size:1.1rem; color:var(--navy);}
-    .kpi-value small{font-size:0.7rem; font-weight:500; color:var(--teal);}
-    .chart-container{margin:1rem 0 0.2rem;}
-    .chart-bars{display:flex; align-items:flex-end; justify-content:space-around; gap:0.5rem; height:130px; margin:0.2rem 0;}
-    .bar-wrapper{display:flex; flex-direction:column; align-items:center; width:100%; animation:barGrow 0.8s cubic-bezier(0.25,0.46,0.45,0.94) both;}
-    @keyframes barGrow{0%{transform:scaleY(0.4); opacity:0;} 100%{transform:scaleY(1); opacity:1;}}
-    .bar-fill{width:100%; background:linear-gradient(to top,var(--teal),#48b5b0); border-radius:12px 12px 6px 6px; transition:height 0.2s; min-height:4px; box-shadow:0 -2px 8px rgba(26,178,176,0.3);}
-    .bar-label{font-size:0.7rem; font-weight:600; margin-top:6px; color:var(--navy);}
-    .bar-percent{font-size:0.6rem; background:var(--purple); color:white; padding:2px 6px; border-radius:40px; margin-bottom:5px; font-weight:700; transform:scale(0.9);}
-    .chart-footer{display:flex; justify-content:space-around; margin-top:0.5rem; color:#3e6191; font-size:0.75rem; font-weight:600; border-top:1px dashed #cbd5e1; padding-top:0.6rem;}
-    .legend-dot{display:inline-block; width:8px; height:8px; border-radius:4px; margin-right:4px;}
-    /* section animations */
-    .section-title{font-size:clamp(1.8rem,5vw,2.4rem); font-weight:700; margin:2.2rem 0 1.5rem; color:var(--navy); position:relative; display:inline-block; animation:slideUnder 0.5s;}
-    @keyframes slideUnder{0%{opacity:0; letter-spacing:-5px;}100%{opacity:1; letter-spacing:normal;}}
-    .section-title:after{content:''; display:block; width:70px; height:4px; background:linear-gradient(90deg,var(--teal),var(--purple)); margin-top:0.3rem; transition:width 0.3s;}
-    .section-title:hover:after{width:110px;}
-    /* about */
-    .about-grid{display:flex; gap:2rem; flex-wrap:wrap; background:var(--white); padding:2rem; border-radius:28px; box-shadow:var(--shadow-sm); border:1px solid #eef2f7;}
-    .profile-img{flex:0 2 160px; min-width:140px; height:200px; background:#d9e2ef; border-radius:28px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#3c5779; font-weight:500; border:2px dashed var(--teal); padding:1rem; text-align:center; transition:0.3s;}
-    .profile-img:hover{border-color:var(--purple); transform:scale(1.02) rotate(0.5deg);}
-    /* skills grid */
-    .skills-wrapper{display:flex; flex-direction:column; gap:2rem;}
-    .skill-category h3{font-size:1.3rem; margin-bottom:1rem; color:var(--navy); border-left:5px solid var(--purple); padding-left:1rem;}
-    .skills-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:1rem;}
-    .skill-card{background:white; border-radius:20px; padding:1rem 0.8rem; text-align:center; box-shadow:var(--shadow-sm); border:1px solid #edf2f9; transition:0.2s;}
-    .skill-card:hover{transform:translateY(-6px) scale(1.02); background:#f6fdff; border-color:var(--teal); box-shadow:0 12px 20px -12px var(--teal);}
-    /* --- REFINED PROJECTS (detailed + well spaced) --- */
-    .projects-grid{
-      display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-      gap:2.2rem; align-items:stretch; margin:2rem 0 1rem;
-    }
-    .project-card{
-      background:var(--white); border-radius:32px; padding:2rem 1.8rem 2rem 1.8rem;
-      box-shadow:var(--shadow-sm); border:1px solid #eef3fa;
-      transition:all 0.25s ease; display:flex; flex-direction:column; height:100%;
-    }
-    .project-card:hover{
-      transform:translateY(-8px); box-shadow:var(--shadow-md);
-      border-color:rgba(26,178,176,0.3);
-    }
-    .project-title{
-      font-size:1.7rem; font-weight:700; line-height:1.3; letter-spacing:-0.02em;
-      color:var(--navy); margin-bottom:0.6rem;
-    }
-    .project-tech{
-      font-size:0.9rem; font-weight:600; color:var(--teal);
-      text-transform:uppercase; letter-spacing:0.3px; margin-bottom:1.25rem;
-    }
-    .project-description{
-      font-size:1rem; color:#2e405b; line-height:1.6;
-      margin-bottom:1.6rem; flex:1;
-    }
-    .project-impact{
-      background:#e2f0ef; color:#0b5e5c; font-weight:700; font-size:0.9rem;
-      padding:0.45rem 1.2rem; border-radius:40px; display:inline-block;
-      margin:0 0 1.5rem 0; border:1px solid rgba(26,178,176,0.25);
-      width:fit-content; letter-spacing:-0.01em;
-    }
-    .project-link{
-      display:inline-flex; align-items:center; gap:0.6rem;
-      background:transparent; border:1.5px solid var(--purple);
-      color:var(--purple); font-weight:600; font-size:0.95rem;
-      padding:0.7rem 1.5rem; border-radius:50px; text-decoration:none;
-      transition:all 0.2s; width:fit-content; margin-top:0.4rem;
-    }
-    .project-link i{font-size:1.1rem; transition:transform 0.2s;}
-    .project-link:hover{background:var(--purple); color:white; border-color:var(--purple);}
-    .project-link:hover i{transform:translateX(4px); color:white;}
-    /* timeline */
-    .timeline{border-left:3px solid var(--teal); padding-left:1.5rem; margin:2rem 0;}
-    .timeline-item{margin-bottom:2rem; position:relative; animation:fadeSlideIn 0.6s;}
-    .timeline-item:before{content:''; width:16px; height:16px; background:white; border:3px solid var(--purple); border-radius:50%; position:absolute; left:-2.1rem; top:0.3rem; transition:0.2s;}
-    .timeline-item:hover:before{background:var(--teal); transform:scale(1.2);}
-    /* education grid */
-    .edu-grid{display:flex; flex-direction:column; gap:1rem; background:white; border-radius:28px; padding:2rem; margin:2rem 0; box-shadow:var(--shadow-sm);}
-    .edu-item{border-bottom:1px solid #eef2f7; padding-bottom:1rem;}
-    .edu-item:last-child{border-bottom:none;}
-    .edu-title{font-weight:700; font-size:1.1rem;}
-    .edu-meta{color:var(--teal); font-weight:500;}
-    /* certifications */
-    .certs-awards{display:flex; flex-wrap:wrap; gap:2rem; margin:2rem 0;}
-    .cert-list, .lang-list{background:white; border-radius:24px; padding:1.5rem; flex:1 1 260px; box-shadow:var(--shadow-sm);}
-    .cert-list li, .lang-list li{list-style:none; margin:0.8rem 0; display:flex; align-items:center; gap:0.8rem;}
-    .cert-list i, .lang-list i{color:var(--purple); width:1.5rem;}
-    .cert-link{color:var(--teal); text-decoration:none; font-weight:500; font-size:0.9rem;}
-    /* contact section */
-    .contact-section{background:var(--navy); border-radius:48px 48px 0 0; padding:2.5rem 1.5rem; color:white; margin-top:3rem;}
-    .contact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:2rem;}
-    .contact-info i{width:2rem; color:var(--teal); transition:0.2s;}
-    .contact-info a{color:white; text-decoration:none;}
-    .contact-info p:hover i{transform:scale(1.2) translateX(5px); color:var(--purple);}
-    .resume-btn{padding:10px 18px; border-radius:8px; background:linear-gradient(135deg,#14b8a6,#0ea5e9); color:#fff; text-decoration:none; font-weight:500; display:inline-flex; align-items:center; gap:8px; transition:transform 0.25s;}
-    .resume-btn:hover{transform:translateY(-4px) scale(1.05); box-shadow:0 8px 20px rgba(20,184,166,0.4);}
-    /* chatbot animated */
-    .chatbot-toggle{position:fixed; bottom:30px; right:30px; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#25D366,#128C7E); color:white; display:flex; align-items:center; justify-content:center; font-size:28px; box-shadow:0 8px 20px rgba(0,0,0,0.2); cursor:pointer; z-index:100; transition:0.25s; border:2px solid white;}
-    .chatbot-toggle:hover{transform:scale(1.15) rotate(5deg);}
-    .chatbot-panel{position:fixed; bottom:100px; right:30px; width:340px; max-width:calc(100vw - 60px); background:white; border-radius:24px; box-shadow:0 20px 40px rgba(0,0,0,0.25); z-index:99; display:none; overflow:hidden; flex-direction:column; animation:slideUp 0.3s;}
-    @keyframes slideUp{0%{opacity:0; transform:translateY(20px);}100%{opacity:1; transform:translateY(0);}}
-    .chatbot-header{background:var(--navy); color:white; padding:1rem 1.2rem; display:flex; align-items:center; gap:10px;}
-    .chatbot-messages{background:#f0f5fb; padding:1.2rem; min-height:180px; max-height:260px; overflow-y:auto;}
-    .bot-message{background:white; align-self:flex-start; padding:0.7rem 1rem; border-radius:20px 20px 20px 4px; max-width:80%; box-shadow:0 2px 5px rgba(0,0,0,0.03);}
-    .user-message{background:#dcf8c6; align-self:flex-end; padding:0.7rem 1rem; border-radius:20px 20px 4px 20px; max-width:80%;}
-    .chatbot-input-area{display:flex; border-top:1px solid #dde3eb;}
-    .chatbot-input-area input{flex:1; border:none; padding:1rem; outline:none;}
-    .chatbot-input-area button{background:#25D366; color:white; border:none; padding:0 1.2rem; font-size:1.2rem; cursor:pointer;}
-    @media (max-width:720px){
-      .app-wrapper{flex-direction:column;}
-      .left-nav{width:100%; height:auto; position:static; flex-direction:row; flex-wrap:wrap; padding:1rem; gap:0.5rem;}
-      .nav-logo{margin-bottom:0.5rem; width:100%;}
-      .nav-menu{flex-direction:row; flex-wrap:wrap; justify-content:center;}
-      .nav-footer{display:none;}
-    }
-    @media (max-width:600px){
-      .chatbot-panel{right:10px; width:300px;}
-    }
-    footer{background:var(--navy); color:#a0bedb; text-align:center; padding:2rem;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Aabesh Alam · Data & Growth Analytics</title>
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0b1e33;
+            --navy-light: #1a334d;
+            --teal: #1ab2b0;
+            --purple: #7a6ef0;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --gray-border: #e9edf4;
+            --text-dark: #0b1e33;
+            --text-medium: #2e405b;
+            --shadow-sm: 0 5px 20px -5px rgba(11, 30, 51, 0.08);
+            --shadow-md: 0 15px 30px -12px rgba(11, 30, 51, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-teal {
+            color: var(--teal);
+        }
+
+        .text-purple {
+            color: var(--purple);
+        }
+
+        .bg-dark {
+            background-color: var(--navy);
+        }
+
+        /* navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--navy);
+            color: white;
+            box-shadow: 0 4px 12px rgba(11, 30, 51, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--navy-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--navy);
+            color: var(--navy);
+        }
+
+        .btn-outline:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--navy);
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-small:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 3rem 0 2rem;
+        }
+
+        .hero-content {
+            flex: 1 1 350px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+        }
+
+        .hero h1 span {
+            color: var(--teal);
+            border-bottom: 3px solid var(--purple);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 500;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-medium);
+        }
+
+        .hero-bio {
+            font-size: 1rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 1.2rem 0 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-viz {
+            flex: 1 1 280px;
+            background: linear-gradient(145deg, #f0f4fe, #ffffff);
+            border-radius: 40px;
+            padding: 1.8rem 1.2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e9f3;
+            min-height: 220px;
+        }
+
+        .viz-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .bar {
+            width: clamp(30px, 6vw, 50px);
+            background: var(--navy);
+            height: 60px;
+            border-radius: 20px 20px 8px 8px;
+            opacity: 0.2;
+        }
+
+        .bar:nth-child(2) {
+            height: 110px;
+            background: var(--teal);
+            opacity: 0.8;
+        }
+
+        .bar:nth-child(3) {
+            height: 85px;
+            background: var(--purple);
+            opacity: 0.9;
+        }
+
+        .bar:nth-child(4) {
+            height: 130px;
+            background: var(--navy);
+            opacity: 0.4;
+        }
+
+        .bar:nth-child(5) {
+            height: 70px;
+            background: var(--teal);
+            opacity: 0.5;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 700;
+            margin: 2.2rem 0 1.5rem;
+            color: var(--navy);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal), var(--purple));
+            margin-top: 0.3rem;
+        }
+
+        /* about */
+        .about-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eef2f7;
+        }
+
+        .about-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-name {
+            margin-top: 0.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            font-size: 1rem;
+            /* adjust as needed */
+            width: 100%;
+            /* makes it same width as the parent */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .profile-img {
+            flex: 0 2 160px;
+            min-width: 140px;
+            height: 200px;
+            background: #d9e2ef;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #3c5779;
+            font-weight: 500;
+            border: 2px dashed var(--teal);
+            padding: 1rem;
+            text-align: center;
+        }
+
+
+        .about-text {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .contact-line {
+            margin: 0.85rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .contact-line i {
+            width: 1.5rem;
+            color: var(--teal);
+        }
+
+        /* skills section – expanded categories */
+        .skills-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            border-left: 5px solid var(--purple);
+            padding-left: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #edf2f9;
+        }
+
+        .skill-card i {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: var(--navy);
+        }
+
+        .skill-card span {
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        /* projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #eef4fa;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-tech {
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .project-impact {
+            background: #e4f3f2;
+            color: #0f6f6d;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 0.75rem 0;
+        }
+
+        /* experience timeline */
+        .timeline {
+            border-left: 3px solid var(--teal);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid var(--purple);
+            border-radius: 50%;
+            position: absolute;
+            left: -2.1rem;
+            top: 0.3rem;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .company {
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .duration {
+            font-size: 0.9rem;
+            color: #4f658b;
+            margin-bottom: 0.5rem;
+        }
+
+        /* certifications & languages */
+        .certs-lang {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cert-list,
+        .lang-list {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            flex: 1 1 260px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cert-list li,
+        .lang-list li {
+            list-style: none;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .cert-list i,
+        .lang-list i {
+            color: var(--purple);
+            width: 1.5rem;
+        }
+
+        /* contact */
+        .contact-section {
+            background: var(--navy);
+            border-radius: 48px 48px 0 0;
+            padding: 2.5rem 1.5rem;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info i {
+            width: 2rem;
+            color: var(--teal);
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .resume-btn {
+            background: var(--teal);
+            color: var(--navy);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        footer {
+            background: var(--navy);
+            color: #a0bedb;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #224a6e;
+        }
+
+        .resume-btn {
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .contact-line {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="app-wrapper">
-  <!-- animated left nav -->
-  <nav class="left-nav">
-    <div class="nav-logo">Aabesh<span>_</span>Alam</div>
-    <div class="nav-menu">
-      <a href="#about" class="nav-item"><i class="fas fa-user"></i> About</a>
-      <a href="#skills" class="nav-item"><i class="fas fa-code"></i> Skills</a>
-      <a href="#projects" class="nav-item"><i class="fas fa-layer-group"></i> Projects</a>
-      <a href="#experience" class="nav-item"><i class="fas fa-briefcase"></i> Experience</a>
-      <a href="#contact" class="nav-item"><i class="fas fa-paper-plane"></i> Contact</a>
-    </div>
-    <div class="nav-footer">
-      <div class="footer-tag"><i class="fas fa-map-pin"></i> Kathmandu / Jhapa</div>
-      <div class="footer-tag"><i class="fas fa-envelope"></i> aweishkhn18</div>
-      <div class="footer-tag"><i class="fas fa-phone-alt"></i> +977 9817-956071</div>
-      <div class="footer-tag"><i class="fab fa-github"></i> <i class="fab fa-linkedin"></i> <i class="fab fa-instagram"></i></div>
-    </div>
-  </nav>
+    <nav class="navbar">
+        <div class="logo">Aabesh Alam<span class="text-teal">_</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-  <main class="main-content">
     <div class="container">
-      <!-- HERO with typing + animated dashboard -->
-      <section class="hero">
-        <div class="hero-content">
-          <h1>Data & Growth Analytics <br><span id="typing-title"></span></h1>
-          <div class="hero-sub">Data Analyst | BI Specialist | Web & Growth Analytics</div>
-          <p class="hero-bio">Data & Growth Analytics professional with experience in ETL workflows, KPI development, dashboard creation, marketing performance analytics, data modeling & transformation. I focus on business‑focused analytics, revenue‑driven insights, decision‑support dashboards, and automation & reporting optimization.</p>
-          <div class="cta-group">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="https://api.whatsapp.com/send/?phone=9779817956071&text&type=phone_number&app_absent=0" target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Contact Me</a>
-          </div>
-          <div style="margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
-            <span><i class="fas fa-envelope text-teal"></i> aweishkhn18@gmail.com</span>
-            <span><i class="fas fa-phone text-purple"></i> +977 9817-956071</span>
-          </div>
-        </div>
-        <!-- animated dashboard widget -->
-        <div class="hero-viz">
-          <div class="dashboard-header"><span><i class="fas fa-chart-line" style="margin-right:5px;"></i> Campaign Analytics</span><i class="fas fa-ellipsis-h"></i></div>
-          <div class="kpi-row">
-            <div class="kpi-item"><div class="kpi-label">LEADS</div><div class="kpi-value">1,284 <small>+12%</small></div></div>
-            <div class="kpi-item"><div class="kpi-label">CTR</div><div class="kpi-value">4.8% <small>↑0.6</small></div></div>
-            <div class="kpi-item"><div class="kpi-label">CPA</div><div class="kpi-value">$23.40 <small>↓8%</small></div></div>
-          </div>
-          <div class="chart-container">
-            <div class="chart-bars">
-              <div class="bar-wrapper"><div class="bar-percent">+20%</div><div class="bar-fill" style="height:80px;"></div><div class="bar-label">Eng.</div></div>
-              <div class="bar-wrapper"><div class="bar-percent">+15%</div><div class="bar-fill" style="height:65px; background:linear-gradient(to top, #7a6ef0, #a294f5);"></div><div class="bar-label">Traffic</div></div>
-              <div class="bar-wrapper"><div class="bar-percent">70+</div><div class="bar-fill" style="height:95px;"></div><div class="bar-label">Leads/mo</div></div>
-              <div class="bar-wrapper"><div class="bar-percent">-30%</div><div class="bar-fill" style="height:45px; background:linear-gradient(to top, #7a6ef0, #a294f5);"></div><div class="bar-label">Report time</div></div>
+        <!-- HERO (merged from both CVs) -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Data & Growth Analytics <span>for business impact</span></h1>
+                <div class="hero-sub">Data Analyst | BI Specialist | Web & Growth Analytics</div>
+                <p class="hero-bio">Digital Marketing Specialist and Computer Science undergraduate with expertise in
+                    SEO, content strategy, social media, WordPress, and data analytics. Certified in Digital Marketing
+                    (Broadway Infosys) and Data Analytics (Vrit Jobs). Skilled in building data pipelines, dashboards,
+                    and leveraging analytics to drive measurable growth.</p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+                <div style="margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
+                    <span><i class="fas fa-envelope text-teal"></i> aweishkhn18@gmail.com</span>
+                    <span><i class="fas fa-phone text-purple"></i> +977 9817-956071</span>
+                </div>
             </div>
-            <div class="chart-footer"><span><span class="legend-dot" style="background:#1ab2b0;"></span> Growth</span><span><span class="legend-dot" style="background:#7a6ef0;"></span> Efficiency</span></div>
-          </div>
+            <div class="hero-viz">
+                <div style="font-weight:600; color:var(--navy);">campaign performance <span
+                        style="color:var(--teal);">↑20% eng.</span></div>
+                <div class="viz-chart">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:1.2rem; color:#3e6191;">
+                    <span>leads</span> <span>CTR</span> <span>CPA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT (merged: includes NCC, awards, education) -->
+        <section id="about">
+            <h2 class="section-title">About me</h2>
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="/public/resume/aabesh-pp.png" alt="Aabesh Alam" class="profile-img">
+                    <div class="profile-name">Aabesh Alam</div>
+                </div>
+                <div class="about-text">
+                    <p style="margin-bottom:1rem;">
+                        Motivated Digital Marketing Specialist and Computer Science undergraduate with expertise in SEO,
+                        content strategy, social media management, and WordPress development. Certified in Digital
+                        Marketing (Broadway Infosys) and Data Analytics (Vrit Jobs). Hands-on with Google Analytics,
+                        SQL, Python, Power BI, and AI automation tools. National Cadet Corps (NCC) Junior Division
+                        trained, 2nd Runner-up in Rashtriyapati Cup Basketball, and winner of NCC Inter-Unit Football
+                        Championship.
+                    </p>
+                    <div class="contact-line">
+                        <span><i class="fab fa-linkedin text-teal"></i> linkedin.com/in/AabeshAlam</span>
+                        <span><i class="fab fa-github text-purple"></i> github.com/aabeshalam</span>
+                    </div>
+                    <div class="contact-line">
+                        <span><i class="fas fa-graduation-cap text-teal"></i> BCS (ongoing) · IIMS, Kathmandu
+                            (2022-2026)</span>
+                        <span><i class="fas fa-trophy text-purple"></i> NCC Cadet · Basketball 2nd Runner-up</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS (expanded from both CVs) -->
+        <section id="skills">
+            <h2 class="section-title">Technical toolkit</h2>
+            <div class="skills-wrapper">
+                <!-- Data & BI -->
+                <div class="skill-category">
+                    <h3>Data & Business Intelligence</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card"><i class="fas fa-database"></i><span>SQL</span></div>
+                        <div class="skill-card"><i class="fab fa-python"></i><span>Python (Pandas, NumPy)</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-pie"></i><span>Power BI</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-bar"></i><span>Tableau</span></div>
+                        <div class="skill-card"><i class="fas fa-file-excel"></i><span>Excel (Advanced)</span></div>
+                        <div class="skill-card"><i class="fas fa-rotate"></i><span>ETL</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-line"></i><span>EDA / Statistics</span></div>
+                        <div class="skill-card"><i class="fas fa-table"></i><span>Data Modeling</span></div>
+                        <div class="skill-card"><i class="fas fa-magnifying-glass"></i><span>KPI Development</span>
+                        </div>
+                        <div class="skill-card"><i class="fas fa-chart-simple"></i><span>Predictive Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Growth & Marketing Analytics -->
+                <div class="skill-category">
+                    <h3>Growth & Marketing Analytics</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card"><i class="fab fa-google"></i><span>Google Analytics (GA4)</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-simple"></i><span>Campaign Analysis</span></div>
+                        <div class="skill-card"><i class="fas fa-arrows-spin"></i><span>Conversion Tracking</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-gantt"></i><span>SEO Data</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-line"></i><span>Looker Studio</span></div>
+                        <div class="skill-card"><i class="fas fa-vial"></i><span>A/B Testing</span></div>
+                    </div>
+                </div>
+                <!-- Web & Product · AI & Tools -->
+                <div class="skill-category">
+                    <h3>Web, AI & Automation</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card"><i class="fab fa-react"></i><span>React.js</span></div>
+                        <div class="skill-card"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                        <div class="skill-card"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+                        <div class="skill-card"><i class="fas fa-robot"></i><span>AI Automation</span></div>
+                        <div class="skill-card"><i class="fas fa-code-branch"></i><span>Prompt Eng.</span></div>
+                        <div class="skill-card"><i class="fab fa-git"></i><span>Git / VS Code</span></div>
+                        <div class="skill-card"><i class="fas fa-wrench"></i><span>AI-assisted Tagging</span></div>
+                    </div>
+                </div>
+                <!-- Platforms & Tools -->
+                <div class="skill-category">
+                    <h3>Platforms & Tools</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card"><i class="fas fa-cloud"></i><span>Google Colab</span></div>
+                        <div class="skill-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+                        <div class="skill-card"><i class="fas fa-chart-pie"></i><span>BigQuery</span></div>
+                        <div class="skill-card"><i class="fas fa-file-powerpoint"></i><span>MS Office</span></div>
+                        <div class="skill-card"><i class="fas fa-video"></i><span>Video Editing</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS (merged from both CVs: 6 projects) -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <!-- DShare -->
+                <div class="project-card">
+                    <div class="project-title">DShare · Hybrid Blockchain</div>
+                    <div class="project-tech">React, IPFS, MetaMask, AI Tagging</div>
+                    <p>Decentralized file‑sharing with blockchain auth. AI tagging improved search efficiency by 40%,
+                        reduced frontend load time by 25%.</p>
+                    <div class="project-impact">40% faster search · 25% load time reduction</div>
+                </div>
+                <!-- Expense Analytics Dashboard -->
+                <div class="project-card">
+                    <div class="project-title">Expense Analytics Dashboard</div>
+                    <div class="project-tech">SQL, Python, Power BI</div>
+                    <p>Processed 5,000+ transactions, identified 15% cost optimization, automated reporting (–30% time).
+                        Built interactive dashboard tracking 6+ KPIs.</p>
+                    <div class="project-impact">15% potential savings · 30% faster reporting</div>
+                </div>
+                <!-- MediCare -->
+                <div class="project-card">
+                    <div class="project-title">MediCare · Healthcare Web</div>
+                    <div class="project-tech">HTML, CSS, JS, React</div>
+                    <p>Responsive multi‑page app with appointment booking. Improved mobile responsiveness 30%,
+                        integrated user behavior tracking.</p>
+                    <div class="project-impact">+30% mobile UX · behavior tracking integrated</div>
+                </div>
+                <!-- Marketing KPI Dashboards -->
+                <div class="project-card">
+                    <div class="project-title">Marketing KPI Dashboards</div>
+                    <div class="project-tech">Power BI, Google Analytics</div>
+                    <p>Built dashboards tracking traffic, engagement, conversion for real estate campaigns. Reduced
+                        reporting time by 30%.</p>
+                    <div class="project-impact">30% faster reporting · campaign visibility ↑</div>
+                </div>
+                <!-- SpendWise (from CV2) -->
+                <div class="project-card">
+                    <div class="project-title">SpendWise · Expense Tracker</div>
+                    <div class="project-tech">JavaScript, HTML5, CSS3, Local Storage</div>
+                    <p>Multi-page expense tracker with dashboard, reports, and settings. Clean UI/UX, fully responsive.
+                    </p>
+                    <div class="project-impact">100% responsive · real‑time updates</div>
+                </div>
+                <!-- AI-assisted Tagging / DShare feature (standalone) -->
+                <div class="project-card">
+                    <div class="project-title">AI-Assisted Tagging System</div>
+                    <div class="project-tech">Python, AI tools, React</div>
+                    <p>Implemented AI‑powered file tagging for DShare, improving search efficiency by 40%. Built user
+                        interaction monitoring interface.</p>
+                    <div class="project-impact">40% efficiency gain · monitoring dashboard</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE (merged: Digital Marketing Specialist + NCC + training) -->
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <!-- Digital Marketing Specialist -->
+                <div class="timeline-item">
+                    <div class="job-title">Digital Marketing Specialist</div>
+                    <div class="company">Saksham Real Estate & Investment Pvt. Ltd.</div>
+                    <div class="duration">May 2025 - November 2025</div>
+                    <ul style="margin-left:1.2rem;">
+                        <li>Increased engagement rate by 20% through multi‑channel campaigns.</li>
+                        <li>Boosted website traffic by 15% via performance optimization.</li>
+                        <li>Generated 70+ qualified leads per month with targeted ads.</li>
+                        <li>Reduced cost‑per‑lead through audience optimization.</li>
+                        <li>Built interactive KPI dashboards → 30% faster reporting.</li>
+                    </ul>
+                </div>
+                <!-- NCC + Sports -->
+                <div class="timeline-item">
+                    <div class="job-title">National Cadet Corps (NCC) · Junior Division</div>
+                    <div class="company">45th Batch, Cadet No. 31377</div>
+                    <div class="duration">July 2018 - December 2018 (100 days)</div>
+                    <ul style="margin-left:1.2rem;">
+                        <li>Successfully completed junior division training.</li>
+                        <li>Member of winning team – NCC Inter-Unit Football Championship.</li>
+                        <li>2nd place – Inter-School Basketball Tournament, Birtamode.</li>
+                        <li>Represented school in Nagar Karyapalika sports meet.</li>
+                    </ul>
+                </div>
+                <!-- Training / Certifications -->
+                <div class="timeline-item">
+                    <div class="job-title">Digital Marketing (360) & Workshops</div>
+                    <div class="company">Broadway Infosys + IIMS</div>
+                    <div class="duration">2023 - 2024</div>
+                    <ul style="margin-left:1.2rem;">
+                        <li>Certified in Digital Marketing (360) – 3 months intensive.</li>
+                        <li>"Putting Communication Skills into Action" – 6h workshop.</li>
+                        <li>Drone Operation & Aerial Photography – Fotology Academy 2025.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS & LANGUAGES (merged) -->
+        <section>
+            <h2 class="section-title">Certifications & Languages</h2>
+            <div class="certs-lang">
+                <div class="cert-list">
+                    <h3 style="margin-bottom:1rem;">Certifications</h3>
+                    <ul>
+                        <li><i class="fas fa-certificate text-purple"></i> Data Analytics & BI – Vrit Jobs (2026)</li>
+                        <li><i class="fas fa-certificate text-purple"></i> Digital Marketing (360) – Broadway Infosys
+                            (2024)</li>
+                        <li><i class="fas fa-certificate text-purple"></i> Drone Operation & Aerial Photography –
+                            Fotology (2025)</li>
+                        <li><i class="fas fa-trophy text-teal"></i> NCC Cadet (Junior Division) – 2018</li>
+                        <li><i class="fas fa-certificate text-purple"></i> Putting Communication Skills into Action –
+                            IIMS (2023)</li>
+                    </ul>
+                </div>
+                <div class="lang-list">
+                    <h3 style="margin-bottom:1rem;">Languages</h3>
+                    <ul>
+                        <li><i class="fas fa-language text-teal"></i> English – Proficient</li>
+                        <li><i class="fas fa-language text-teal"></i> Nepali – Proficient</li>
+                        <li><i class="fas fa-language text-teal"></i> Hindi – Competent</li>
+                    </ul>
+                    <h3 style="margin:1.5rem 0 1rem;">Awards</h3>
+                    <ul>
+                        <li><i class="fas fa-medal text-purple"></i> 2nd Runner‑up – Rashtriyapati Cup Basketball</li>
+                        <li><i class="fas fa-medal text-teal"></i> NCC Inter-Unit Football – Winner</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT (updated with full details) -->
+    <section id="contact" class="contact-section">
+        <div class="container" style="padding:0;">
+            <h2 style="color:white; font-size:clamp(1.8rem,5vw,2.2rem); margin-bottom:1.5rem;">Let’s Connect</h2>
+
+            <div class="contact-grid" style="gap:2rem;">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope text-teal"></i> <strong>Email:</strong> <a
+                            href="mailto:aweishkhn18@gmail.com"
+                            style="color:#b0d0f0; text-decoration:none;">aweishkhn18@gmail.com</a></p>
+                    <p><i class="fas fa-phone text-purple"></i> <strong>Phone:</strong> <a
+                            href="https://api.whatsapp.com/send/?phone=9817956071&text&type=phone_number&app_absent=0"
+                            target="_blank" style="color:#b0d0f0; text-decoration:none;">+977 9817-956071</a></p>
+                    <p><i class="fab fa-linkedin text-teal"></i> <strong>LinkedIn:</strong> <a
+                            href="https://www.linkedin.com/in/aabesh-alam-5357532b1/" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">linkedin.com/in/aabesh-alam</a></p>
+                    <p><i class="fab fa-github text-purple"></i> <strong>GitHub:</strong> <a
+                            href="https://github.com/aabeshalam" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">github.com/aabeshalam</a></p>
+                    <p><i class="fab fa-facebook text-blue-600"></i> <strong>Facebook:</strong> <a
+                            href="https://www.facebook.com/aawesh.khn" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">facebook.com/aawesh.khn</a></p>
+                    <p><i class="fab fa-instagram text-pink-500"></i> <strong>Instagram:</strong> <a
+                            href="https://www.instagram.com/aabesh_alam/?hl=am-et" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">instagram.com/aabesh_alam</a></p>
+                    <p><i class="fas fa-map-pin text-teal"></i> <strong>Location:</strong> Kathmandu / Jhapa, Nepal</p>
+                </div>
+
+                <!-- CV Buttons + Achievements -->
+                <div style="display: flex; flex-direction: column; gap:1.5rem;">
+                    <!-- CV Buttons -->
+                    <div style="display: flex; gap:1rem; flex-wrap:wrap;">
+                        <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn" download>
+                            <i class="fas fa-download"></i> Download CV (PDF)
+                        </a>
+                        <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn view-btn" target="_blank">
+                            <i class="fas fa-eye"></i> View CV
+                        </a>
+                    </div>
+
+                    <!-- Achievements / Highlights -->
+                    <div style="display: flex; flex-direction: column; gap:0.8rem; color:#b0d0f0;">
+                        <p><i class="fas fa-trophy text-teal"></i> NCC Cadet · Basketball 2nd Runner-up</p>
+                        <p><i class="fas fa-basketball-ball text-purple"></i> 2nd Runner‑up – Rashtriyapati Cup</p>
+                        <p><i class="fas fa-graduation-cap text-teal"></i> BCS (2022-2026) · IIMS</p>
+                        <p><i class="fas fa-bolt text-purple"></i> NCC Junior Division</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer small info -->
+            <div
+                style="margin-top:2rem; border-top:1px solid #1e3857; padding-top:1rem; color:#b0d0f0; font-size:0.9rem; display:flex; flex-wrap:wrap; gap:1.5rem;">
+                <span>© 2025 Aabesh Alam · Data & Growth Analytics</span>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- ABOUT (detailed) -->
-      <section id="about"><h2 class="section-title">About me</h2>
-        <div class="about-grid">
-          <div class="about-photo"><img src="/public/resume/aabesh-pp.png" alt="Aabesh Alam" class="profile-img"><div class="profile-name">Aabesh Alam</div></div>
-          <div class="about-text"><p style="margin-bottom:1rem;">I am a data-driven professional with a strong foundation in Computer Science and hands-on experience in Data Analytics, Business Intelligence, and Growth Performance Analysis. Currently pursuing my Bachelor’s degree in Computer Science, I specialize in transforming raw datasets into actionable insights using SQL, Python (Pandas, NumPy), Power BI, and Excel. With a background in digital marketing and KPI dashboard development, I combine analytical thinking with business strategy to drive measurable growth — from analyzing 5,000+ records and building interactive dashboards to optimizing campaign performance and improving reporting efficiency.</p>
-            <div class="contact-line"><span><i class="fab fa-linkedin text-teal"></i> linkedin.com/in/AabeshAlam</span><span><i class="fab fa-github text-purple"></i> github.com/aabeshalam</span></div>
-            <div class="contact-line"><span><i class="fas fa-graduation-cap text-teal"></i> BCS (ongoing) · IIMS, Kathmandu (2022-2026)</span><span><i class="fas fa-trophy text-purple"></i> NCC Cadet · Basketball 2nd Runner-up</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS (complete) -->
-      <section id="skills"><h2 class="section-title">Technical toolkit</h2>
-        <div class="skills-wrapper">
-          <div class="skill-category"><h3>Data & Business Intelligence</h3><div class="skills-grid">
-            <div class="skill-card"><i class="fas fa-database"></i><span>SQL</span></div>
-            <div class="skill-card"><i class="fab fa-python"></i><span>Python (Pandas, NumPy)</span></div>
-            <div class="skill-card"><i class="fas fa-chart-pie"></i><span>Power BI</span></div>
-            <div class="skill-card"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-            <div class="skill-card"><i class="fas fa-broom"></i><span>Data Cleaning</span></div>
-            <div class="skill-card"><i class="fas fa-magnifying-glass-chart"></i><span>EDA</span></div>
-            <div class="skill-card"><i class="fas fa-rotate"></i><span>ETL Processes</span></div>
-            <div class="skill-card"><i class="fas fa-code-branch"></i><span>Data Transformation</span></div>
-            <div class="skill-card"><i class="fas fa-table"></i><span>Data Modeling</span></div>
-            <div class="skill-card"><i class="fas fa-chart-line"></i><span>Predictive Analysis</span></div>
-            <div class="skill-card"><i class="fas fa-calculator"></i><span>Statistical Analysis</span></div>
-            <div class="skill-card"><i class="fas fa-chart-simple"></i><span>KPI Development</span></div>
-          </div></div>
-          <div class="skill-category"><h3>Growth & Marketing Analytics</h3><div class="skills-grid">
-            <div class="skill-card"><i class="fab fa-google"></i><span>Google Analytics</span></div>
-            <div class="skill-card"><i class="fas fa-chart-simple"></i><span>Campaign Perf.</span></div>
-            <div class="skill-card"><i class="fas fa-arrows-spin"></i><span>Conversion Tracking</span></div>
-            <div class="skill-card"><i class="fas fa-chart-gantt"></i><span>SEO Data</span></div>
-            <div class="skill-card"><i class="fas fa-chart-pie"></i><span>Reporting & Viz</span></div>
-          </div></div>
-          <div class="skill-category"><h3>Web & Product</h3><div class="skills-grid">
-            <div class="skill-card"><i class="fab fa-react"></i><span>React.js</span></div>
-            <div class="skill-card"><i class="fab fa-js"></i><span>JavaScript</span></div>
-            <div class="skill-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
-            <div class="skill-card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-            <div class="skill-card"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-            <div class="skill-card"><i class="fas fa-mobile-alt"></i><span>Responsive UI</span></div>
-          </div></div>
-          <div class="skill-category"><h3>AI & Automation</h3><div class="skills-grid">
-            <div class="skill-card"><i class="fas fa-robot"></i><span>AI Workflow Automation</span></div>
-            <div class="skill-card"><i class="fas fa-tag"></i><span>AI-assisted Tagging</span></div>
-            <div class="skill-card"><i class="fas fa-message"></i><span>Prompt Engineering</span></div>
-          </div></div>
-          <div class="skill-category"><h3>Platforms & Tools</h3><div class="skills-grid">
-            <div class="skill-card"><i class="fas fa-cloud"></i><span>Google Colab</span></div>
-            <div class="skill-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
-            <div class="skill-card"><i class="fas fa-code"></i><span>VS Code</span></div>
-            <div class="skill-card"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-            <div class="skill-card"><i class="fas fa-file-powerpoint"></i><span>PowerPoint</span></div>
-            <div class="skill-card"><i class="fas fa-file-word"></i><span>Word</span></div>
-          </div></div>
-        </div>
-      </section>
-
-      <!-- PROJECTS – REFINED & DETAILED (exactly as requested) -->
-      <section id="projects"><h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-title">DShare – Hybrid Blockchain</div>
-            <div class="project-tech">React.js, IPFS, MetaMask, AI Tagging</div>
-            <p class="project-description">Decentralized file‑sharing with blockchain authentication. AI‑powered tagging improved search efficiency by 40%, while IPFS optimizations reduced frontend load time by 25%.</p>
-            <div class="project-impact">40% faster search · 25% load reduction</div>
-            <a href="#" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-          </div>
-          <div class="project-card">
-            <div class="project-title">Expense Analytics Dashboard</div>
-            <div class="project-tech">SQL, Python, Power BI</div>
-            <p class="project-description">Processed 5,000+ transactions to uncover a 15% cost‑optimization opportunity. Automated recurring reports, cutting reporting time by 30% and improving data accuracy across six KPIs.</p>
-            <div class="project-impact">15% savings · 30% faster reporting</div>
-            <a href="#" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-          </div>
-          <div class="project-card">
-            <div class="project-title">MediCare – Healthcare Web</div>
-            <div class="project-tech">HTML, CSS, JavaScript, React</div>
-            <p class="project-description">Responsive multi‑page healthcare app with appointment booking. Improved mobile responsiveness by 30% through frontend tuning, integrated user behavior tracking for conversion insights.</p>
-            <div class="project-impact">+30% mobile UX · tracking integrated</div>
-            <a href="#" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- EXPERIENCE -->
-      <section id="experience"><h2 class="section-title">Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item"><div class="job-title">Digital Marketing Specialist</div><div class="company">Saksham Real Estate & Investment</div><div class="duration">May 2025 – November 2025</div><ul style="margin-left:1.2rem;"><li>Increased engagement rate by 20%, website traffic 15%.</li><li>Generated 70+ qualified leads/month, reduced cost‑per‑lead.</li><li>Built interactive KPI dashboards reducing reporting time by 30%.</li></ul></div>
-          <div class="timeline-item"><div class="job-title">National Cadet Corps (NCC)</div><div class="company">45th Batch, Cadet No. 31377</div><div class="duration">July – December 2018</div><ul><li>NCC Inter-Unit Football Championship winner, Basketball 2nd place.</li></ul></div>
-        </div>
-      </section>
-
-      <!-- EDUCATION -->
-      <section><h2 class="section-title">Education</h2><div class="edu-grid">
-        <div class="edu-item"><div class="edu-title">Bachelor of Computer Science (ongoing)</div><div class="edu-meta">IIMS, Kathmandu · 2022–2026</div></div>
-        <div class="edu-item"><div class="edu-title">Higher Secondary (+2)</div><div class="edu-meta">GoldenGate School · GPA 3.09</div></div>
-        <div class="edu-item"><div class="edu-title">Secondary Education (SEE)</div><div class="edu-meta">Little Flowers' School · GPA 3.00</div></div>
-      </div></section>
-
-      <!-- CERTIFICATIONS & AWARDS (detailed) -->
-      <section><h2 class="section-title">Training & Certifications</h2><div class="certs-awards">
-        <div class="cert-list"><ul><li><i class="fas fa-certificate text-purple"></i> Drone Operation – Fotology Academy (2025)</li><li><i class="fas fa-certificate text-purple"></i> Digital Marketing (360) – Broadway Infosys (2024)</li><li><i class="fas fa-certificate text-purple"></i> Communication Skills – IIMS (2023)</li><li><i class="fas fa-certificate text-purple"></i> National Cadet Corps (NCC) Junior Division (2018)</li></ul></div>
-        <div class="lang-list"><h3 style="margin-bottom:1rem;">Languages</h3><ul><li><i class="fas fa-language text-teal"></i> English – Proficient</li><li><i class="fas fa-language text-teal"></i> Nepali – Proficient</li><li><i class="fas fa-language text-teal"></i> Hindi – Competent</li></ul><h3 style="margin:1.5rem 0 1rem;">Awards</h3><ul><li><i class="fas fa-medal text-purple"></i> NCC Junior Division (Cadet No. 31377)</li><li><i class="fas fa-medal text-teal"></i> NCC Inter-Unit Football – Winner</li><li><i class="fas fa-medal text-purple"></i> 2nd Place – Inter-School Basketball</li></ul></div>
-      </div></section>
-    </div> <!-- container -->
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="contact-section"><div class="container" style="padding:0;">
-      <h2 style="color:white; font-size:clamp(1.8rem,5vw,2.2rem); margin-bottom:1.5rem;">Let’s Connect</h2>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p><i class="fas fa-envelope text-teal"></i> <strong>Email:</strong> <a href="mailto:aweishkhn18@gmail.com">aweishkhn18@gmail.com</a></p>
-          <p><i class="fas fa-phone text-purple"></i> <strong>Phone/WhatsApp:</strong> <a href="https://api.whatsapp.com/send/?phone=9779817956071" target="_blank">+977 9817-956071</a></p>
-          <p><i class="fab fa-linkedin text-teal"></i> <strong>LinkedIn:</strong> <a href="#">linkedin.com/in/aabesh-alam</a></p>
-          <p><i class="fab fa-github text-purple"></i> <strong>GitHub:</strong> <a href="#">github.com/aabeshalam</a></p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:1rem;">
-          <div style="display:flex; gap:1rem;"><a href="#" class="resume-btn" download><i class="fas fa-download"></i> Download CV</a><a href="#" class="resume-btn view-btn"><i class="fas fa-eye"></i> View CV</a></div>
-          <div style="color:#b0d0f0;"><p><i class="fas fa-trophy text-teal"></i> NCC Cadet · Basketball 2nd Runner-up</p></div>
-        </div>
-      </div>
-      <div style="margin-top:2rem; border-top:1px solid #1e3857; padding-top:1rem; color:#b0d0f0;">© 2025 Aabesh Alam · Data & Growth Analytics</div>
-    </div></section>
-    <footer><p>v4.0 · fully detailed & animated portfolio</p></footer>
-  </main>
-</div>
-
-<!-- chatbot widget -->
-<div class="chatbot-toggle" id="chatToggle"><i class="fab fa-whatsapp"></i></div>
-<div class="chatbot-panel" id="chatPanel">
-  <div class="chatbot-header"><i class="fab fa-whatsapp"></i><h4>WhatsApp Chat</h4><span class="close-btn" id="closeChat"><i class="fas fa-times"></i></span></div>
-  <div class="chatbot-messages" id="chatMessages"><div class="bot-message">👋 Hi! Send a message, it'll open WhatsApp.</div></div>
-  <div class="chatbot-input-area"><input type="text" id="chatInput" placeholder="Type your message..." /><button id="sendChatBtn"><i class="fab fa-whatsapp"></i></button></div>
-  <div class="whatsapp-notice"><i class="fas fa-lock"></i> You'll be redirected to WhatsApp.</div>
-</div>
-
-<script>
-  // typing animation
-  const titles = ["for Business Impact","Turning Data Into Strategic Business Decisions","Driving Growth Through Data Intelligence","Transforming Raw Data Into Measurable Results","Business Intelligence Powered by Data","Analytics That Convert Insights Into Action"];
-  let idx=0, chIdx=0, del=false; const spd=70, pause=2000;
-  function typeEffect(){
-    const cur=titles[idx], el=document.getElementById("typing-title");
-    if(!el) return;
-    if(del){ el.textContent=cur.substring(0,chIdx-1); chIdx--; }
-    else { el.textContent=cur.substring(0,chIdx+1); chIdx++; }
-    if(!del && chIdx===cur.length){ del=true; setTimeout(typeEffect,pause); return; }
-    if(del && chIdx===0){ del=false; idx=(idx+1)%titles.length; setTimeout(typeEffect,200); return; }
-    setTimeout(typeEffect, del?spd/2:spd);
-  }
-  // chat widget
-  const toggle=document.getElementById('chatToggle'), panel=document.getElementById('chatPanel'), close=document.getElementById('closeChat');
-  const sendBtn=document.getElementById('sendChatBtn'), input=document.getElementById('chatInput'), msgBox=document.getElementById('chatMessages');
-  const phone='9779817956071';
-  toggle.addEventListener('click',()=>{ panel.style.display=panel.style.display==='flex'?'none':'flex'; });
-  close.addEventListener('click',()=>{ panel.style.display='none'; });
-  function sendWA(){
-    if(!input.value.trim()) return;
-    const user=document.createElement('div'); user.className='user-message'; user.textContent=input.value;
-    msgBox.appendChild(user); msgBox.scrollTop=msgBox.scrollHeight;
-    window.open(`https://api.whatsapp.com/send/?phone=${phone}&text=${encodeURIComponent(input.value)}&type=phone_number&app_absent=0`,'_blank');
-    setTimeout(()=>{ const bot=document.createElement('div'); bot.className='bot-message'; bot.textContent='👍 Message sent! Continue on WhatsApp.'; msgBox.appendChild(bot); },800);
-    input.value='';
-  }
-  sendBtn.addEventListener('click',sendWA);
-  input.addEventListener('keypress',(e)=>{ if(e.key==='Enter') sendWA(); });
-  document.addEventListener('DOMContentLoaded',()=>{ setTimeout(typeEffect,300); });
-</script>
+    <footer>
+        <p>© 2025 Aabesh Alam · Data & Growth Analytics · built from both CVs</p>
+    </footer>
 </body>
+
 </html>
