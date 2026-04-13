@@ -277,24 +277,28 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid #eef2f7;
         }
-.about-photo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-.profile-name {
-    margin-top: 0.5rem;
-    font-weight: 700;
-    color: var(--navy);
-    text-align: center;
-    font-size: 1rem; /* adjust as needed */
-    width: 100%; /* makes it same width as the parent */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+        .about-photo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-name {
+            margin-top: 0.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            font-size: 1rem;
+            /* adjust as needed */
+            width: 100%;
+            /* makes it same width as the parent */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
         .profile-img {
             flex: 0 2 160px;
             min-width: 140px;
@@ -619,9 +623,9 @@
             <h2 class="section-title">About me</h2>
             <div class="about-grid">
                 <div class="about-photo">
-    <img src="Aabesh Alam pp.png" alt="Aabesh Alam" class="profile-img">
-    <div class="profile-name">Aabesh Alam</div>
-</div>
+                    <img src="/public/resume/aabesh-pp.png" alt="Aabesh Alam" class="profile-img">
+                    <div class="profile-name">Aabesh Alam</div>
+                </div>
                 <div class="about-text">
                     <p style="margin-bottom:1rem;">
                         Motivated Digital Marketing Specialist and Computer Science undergraduate with expertise in SEO,
@@ -839,49 +843,62 @@
 
     <!-- CONTACT (updated with full details) -->
     <section id="contact" class="contact-section">
-    <div class="container" style="padding:0;">
-        <h2 style="color:white; font-size:clamp(1.8rem,5vw,2.2rem); margin-bottom:1.5rem;">Let’s Connect</h2>
-        
-        <div class="contact-grid" style="gap:2rem;">
-            <!-- Contact Info -->
-            <div class="contact-info">
-                <p><i class="fas fa-envelope text-teal"></i> <strong>Email:</strong> <a href="mailto:aweishkhn18@gmail.com" style="color:#b0d0f0; text-decoration:none;">aweishkhn18@gmail.com</a></p>
-                <p><i class="fas fa-phone text-purple"></i> <strong>Phone:</strong> <a href="https://api.whatsapp.com/send/?phone=9817956071&text&type=phone_number&app_absent=0" target="_blank" style="color:#b0d0f0; text-decoration:none;">+977 9817-956071</a></p>
-                <p><i class="fab fa-linkedin text-teal"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aabesh-alam-5357532b1/" target="_blank" style="color:#b0d0f0; text-decoration:none;">linkedin.com/in/aabesh-alam</a></p>
-                <p><i class="fab fa-github text-purple"></i> <strong>GitHub:</strong> <a href="https://github.com/aabeshalam" target="_blank" style="color:#b0d0f0; text-decoration:none;">github.com/aabeshalam</a></p>
-                <p><i class="fab fa-facebook text-blue-600"></i> <strong>Facebook:</strong> <a href="https://www.facebook.com/aawesh.khn" target="_blank" style="color:#b0d0f0; text-decoration:none;">facebook.com/aawesh.khn</a></p>
-                <p><i class="fab fa-instagram text-pink-500"></i> <strong>Instagram:</strong> <a href="https://www.instagram.com/aabesh_alam/?hl=am-et" target="_blank" style="color:#b0d0f0; text-decoration:none;">instagram.com/aabesh_alam</a></p>
-                <p><i class="fas fa-map-pin text-teal"></i> <strong>Location:</strong> Kathmandu / Jhapa, Nepal</p>
-            </div>
+        <div class="container" style="padding:0;">
+            <h2 style="color:white; font-size:clamp(1.8rem,5vw,2.2rem); margin-bottom:1.5rem;">Let’s Connect</h2>
 
-            <!-- CV Buttons + Achievements -->
-            <div style="display: flex; flex-direction: column; gap:1.5rem;">
-                <!-- CV Buttons -->
-                <div style="display: flex; gap:1rem; flex-wrap:wrap;">
-                    <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn" download>
-                        <i class="fas fa-download"></i> Download CV (PDF)
-                    </a>
-                    <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn view-btn" target="_blank">
-                        <i class="fas fa-eye"></i> View CV
-                    </a>
+            <div class="contact-grid" style="gap:2rem;">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope text-teal"></i> <strong>Email:</strong> <a
+                            href="mailto:aweishkhn18@gmail.com"
+                            style="color:#b0d0f0; text-decoration:none;">aweishkhn18@gmail.com</a></p>
+                    <p><i class="fas fa-phone text-purple"></i> <strong>Phone:</strong> <a
+                            href="https://api.whatsapp.com/send/?phone=9817956071&text&type=phone_number&app_absent=0"
+                            target="_blank" style="color:#b0d0f0; text-decoration:none;">+977 9817-956071</a></p>
+                    <p><i class="fab fa-linkedin text-teal"></i> <strong>LinkedIn:</strong> <a
+                            href="https://www.linkedin.com/in/aabesh-alam-5357532b1/" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">linkedin.com/in/aabesh-alam</a></p>
+                    <p><i class="fab fa-github text-purple"></i> <strong>GitHub:</strong> <a
+                            href="https://github.com/aabeshalam" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">github.com/aabeshalam</a></p>
+                    <p><i class="fab fa-facebook text-blue-600"></i> <strong>Facebook:</strong> <a
+                            href="https://www.facebook.com/aawesh.khn" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">facebook.com/aawesh.khn</a></p>
+                    <p><i class="fab fa-instagram text-pink-500"></i> <strong>Instagram:</strong> <a
+                            href="https://www.instagram.com/aabesh_alam/?hl=am-et" target="_blank"
+                            style="color:#b0d0f0; text-decoration:none;">instagram.com/aabesh_alam</a></p>
+                    <p><i class="fas fa-map-pin text-teal"></i> <strong>Location:</strong> Kathmandu / Jhapa, Nepal</p>
                 </div>
 
-                <!-- Achievements / Highlights -->
-                <div style="display: flex; flex-direction: column; gap:0.8rem; color:#b0d0f0;">
-                    <p><i class="fas fa-trophy text-teal"></i> NCC Cadet · Basketball 2nd Runner-up</p>
-                    <p><i class="fas fa-basketball-ball text-purple"></i> 2nd Runner‑up – Rashtriyapati Cup</p>
-                    <p><i class="fas fa-graduation-cap text-teal"></i> BCS (2022-2026) · IIMS</p>
-                    <p><i class="fas fa-bolt text-purple"></i> NCC Junior Division</p>
+                <!-- CV Buttons + Achievements -->
+                <div style="display: flex; flex-direction: column; gap:1.5rem;">
+                    <!-- CV Buttons -->
+                    <div style="display: flex; gap:1rem; flex-wrap:wrap;">
+                        <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn" download>
+                            <i class="fas fa-download"></i> Download CV (PDF)
+                        </a>
+                        <a href="public/resume/Aabesh_Alam_CV.pdf" class="resume-btn view-btn" target="_blank">
+                            <i class="fas fa-eye"></i> View CV
+                        </a>
+                    </div>
+
+                    <!-- Achievements / Highlights -->
+                    <div style="display: flex; flex-direction: column; gap:0.8rem; color:#b0d0f0;">
+                        <p><i class="fas fa-trophy text-teal"></i> NCC Cadet · Basketball 2nd Runner-up</p>
+                        <p><i class="fas fa-basketball-ball text-purple"></i> 2nd Runner‑up – Rashtriyapati Cup</p>
+                        <p><i class="fas fa-graduation-cap text-teal"></i> BCS (2022-2026) · IIMS</p>
+                        <p><i class="fas fa-bolt text-purple"></i> NCC Junior Division</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer small info -->
-        <div style="margin-top:2rem; border-top:1px solid #1e3857; padding-top:1rem; color:#b0d0f0; font-size:0.9rem; display:flex; flex-wrap:wrap; gap:1.5rem;">
-            <span>© 2025 Aabesh Alam · Data & Growth Analytics</span>
+            <!-- Footer small info -->
+            <div
+                style="margin-top:2rem; border-top:1px solid #1e3857; padding-top:1rem; color:#b0d0f0; font-size:0.9rem; display:flex; flex-wrap:wrap; gap:1.5rem;">
+                <span>© 2025 Aabesh Alam · Data & Growth Analytics</span>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <p>© 2025 Aabesh Alam · Data & Growth Analytics · built from both CVs</p>
