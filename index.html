@@ -250,19 +250,21 @@
       flex-wrap: wrap;
     }
 
-    /* Video widget replacing dashboard */
+    /* Video widget - FIXED POSITION (no floating) */
     .hero-viz {
       flex: 1 1 300px;
       border-radius: 32px;
       overflow: hidden;
       box-shadow: var(--shadow-md);
       border: 1px solid #d6e3f0;
-      animation: floatViz 5s infinite alternate;
       background: var(--navy);
       padding: 0;
       min-height: 260px;
       display: flex;
       align-items: stretch;
+      /* Removed animation and floating transforms */
+      transform: translateY(0) !important;
+      transition: none;
     }
 
     .hero-viz video {
@@ -274,10 +276,7 @@
       border-radius: 32px;
     }
 
-    @keyframes floatViz {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-8px); box-shadow: 0 30px 40px -14px rgba(26, 178, 176, 0.35); }
-    }
+    /* No floating keyframes used anymore */
 
     /* Section Titles */
     .section-title {
@@ -938,9 +937,18 @@
         </div>
       </section>
 
-      <!-- PROJECTS SECTION (updated with NPL dashboard etc) -->
+      <!-- PROJECTS SECTION (New Banking Analytics added as FIRST project) -->
       <section id="projects"><h2 class="section-title">Projects</h2>
         <div class="projects-grid">
+          <!-- NEW: Banking Analytics Platform (Production-Ready) -->
+          <div class="project-card">
+            <div class="project-title">Banking Analytics Platform</div>
+            <div class="project-tech">Python, Pandas, PostgreSQL, Power BI, DAX, SQLAlchemy</div>
+            <p class="project-description">Production-ready platform processing quarterly financial data from 25+ commercial banks across 18+ quarters (BS 2077-2082). Built end-to-end ETL pipeline with Bronze/Silver/Gold tier data warehouse, 70+ DAX measures enabling real-time KPI tracking for CAR, NPL, CCDR, SLR, spread ratios. Delivered 8 interactive dashboard pages: Executive Overview, Bank Scorecard, Capital & Solvency, Asset Quality, Liquidity, Interest Rates, Regulatory Compliance, and Historical Trends. Implemented risk monitoring identifying banks exceeding regulatory thresholds (NPL > 5%, CCD > 80%, CAR < 11%).</p>
+            <div class="project-impact">70+ DAX measures · 8 dashboards · 25+ banks · Risk automation</div>
+            <a href="#" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+          <!-- existing projects remain -->
           <div class="project-card">
             <div class="project-title">NPL Dashboard</div>
             <div class="project-tech">Power BI, Python, Data Visualization</div>
